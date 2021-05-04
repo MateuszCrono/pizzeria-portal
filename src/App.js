@@ -1,24 +1,42 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import MainLayout from './components/layout/MainLayout/MainLayout';
-import Ktichen from './components/views/kitchen/Kitchen';
-import Login from './components/views/Login/Login';
-import Tables from './components/views/table/Table';
-import Waiter from './components/views/waiter/Waiter';
-import Dashboard from './components';
+import MainLayout from './components/layout/MainLayout/MainLayout.js';
+import Ktichen from './components/views/Kitchen/Kitchen/kitchen.js';
+import Login from './components/views/Login/Login.js';
+import Tables from './components/views/Tables/Tables.js';
+import Waiter from './components/views/Waiter/Waiter.js';
+import Dashboard from './components/views/Dashboard/Dashboard.js';
+import { StylesProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#2B4C6F' },
+    // secondary: {
+    //   main: '#11cb5f',
+    // },
+  },
+});
 
 function App() {
   return (
     <BrowserRouter basename={'/panel'}>
-      <MainLayout>
-        <Switch>
-          <Route exact path={`${process.env.PUBLIC_URL}/`} component={Dashboard} />
-          <Route exact path={process.env.PUBLIC_URL + '/login'} component={Login} />
-          <Route exact path={process.env.PUBLIC_URL + '/tables'} component={Tables} />
-          <Route exact path={process.env.PUBLIC_URL + '/waiter'} component={Waiter} />
-          <Route exact path={process.env.PUBLIC_URL + '/kitchen'} component={Ktichen} />
-        </Switch>
-      </MainLayout>
+      <StylesProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <MainLayout>
+            <Switch>
+              <Route exact path={process.env.PUBLIC_URL + '/'} component={Dashboard} />
+              <Route exact path={process.env.PUBLIC_URL + '/login'} component={Login} />
+              <Route exact path={process.env.PUBLIC_URL + '/tables'} component={Tables} />
+              <Route exact path={process.env.PUBLIC_URL + '/waiter'} component={Waiter} />
+              <Route exact path={process.env.PUBLIC_URL + '/kitchen'} component={Ktichen} />
+            </Switch>
+          </MainLayout>
+        </ThemeProvider>
+      </StylesProvider>
     </BrowserRouter>
   );
 }
