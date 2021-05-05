@@ -1,18 +1,72 @@
 import React from 'react';
 import styles from './Kitchen.module.scss';
-import {Link} from 'react-dom';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
+const demoContent = [
+  {id: '1', status: 'free', order: null},
+  {id: '2', status: 'thinking', order: null},
+  {id: '3', status: 'ordered', order: 123},
+  {id: '4', status: 'prepared', order: 234},
+  {id: '5', status: 'delivered', order: 345},
+  {id: '6', status: 'paid', order: 456},
+];
 
-const Ktichen = () => (
+const renderActions = status => {
+  switch (status) {
+    case 'ordered':
+      return (
+        <Button>prepared</Button>
+      );
+    case 'prepared':
+      return (
+        <Button>delivered</Button>
+      );
+    default:
+      return 'free';
+  }
+};
 
-  <div className={styles.component}>
-    <Link exact to={`${process.env.PUBLIC_URL}/`} activeClassName='active'>Dashboard</Link>
-    <Link to={`${process.env.PUBLIC_URL}/login`} activeClassName='active'>Login</Link>
-    <Link to={`${process.env.PUBLIC_URL}/tables`} activeClassName='active'>Tables</Link>
-    <Link to={`${process.env.PUBLIC_URL}/waiter`} activeClassName='active'>Waiter</Link>
-    <h2> {'Kitchen View'}</h2>
-  </div>
-
+const Kitchen = () => (
+  <Paper className={styles.component}>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>Table</TableCell>
+          <TableCell>Status</TableCell>
+          <TableCell>Order</TableCell>
+          <TableCell>Action</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {demoContent.map(row => (
+          <TableRow key={row.id}>
+            <TableCell component="th" scope="row">
+              {row.id}
+            </TableCell>
+            <TableCell>
+              {row.status}
+            </TableCell>
+            <TableCell>
+              {row.order && (
+                <Button to={`${process.env.PUBLIC_URL}/kitchen/order/${row.order}`}>
+                  {row.order}
+                </Button>
+              )}
+            </TableCell>
+            <TableCell>
+              {renderActions(row.status)}
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </Paper>
 );
 
-export default Ktichen;
+export default Kitchen;
