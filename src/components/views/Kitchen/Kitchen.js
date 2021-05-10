@@ -9,23 +9,23 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 const demoContent = [
-  {id: '1', status: 'free', order: null},
-  {id: '2', status: 'thinking', order: null},
-  {id: '3', status: 'ordered', order: 123},
-  {id: '4', status: 'prepared', order: 234},
-  {id: '5', status: 'delivered', order: 345},
-  {id: '6', status: 'paid', order: 456},
+  {id: '1', status: 'ordered', order: 'pizza salame'},
+  {id: '2', status: 'ordered', order: 'burger'},
+  {id: '3', status: 'ordered', order: 'cafe latte'},
+  {id: '4', status: 'prepared', order: 'spaghetti, lasagna'},
+  {id: '5', status: 'ordered', order: 'cake'},
+  {id: '6', status: 'prepared', order: 'pizza margharita'},
 ];
 
 const renderActions = status => {
   switch (status) {
     case 'ordered':
       return (
-        <Button>prepared</Button>
+        <Button>in preperation</Button>
       );
     case 'prepared':
       return (
-        <Button>delivered</Button>
+        <Button>READY</Button>
       );
     default:
       return 'free';
@@ -37,7 +37,7 @@ const Kitchen = () => (
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell>Table</TableCell>
+          <TableCell>Table/Order Number</TableCell>
           <TableCell>Status</TableCell>
           <TableCell>Order</TableCell>
           <TableCell>Action</TableCell>

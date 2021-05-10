@@ -9,42 +9,47 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 const demoContent = [
-  {id: '1', status: 'free', order: null},
-  {id: '2', status: 'thinking', order: null},
-  {id: '3', status: 'ordered', order: 123},
-  {id: '4', status: 'prepared', order: 234},
-  {id: '5', status: 'delivered', order: 345},
-  {id: '6', status: 'paid', order: 456},
+  {hour: '12:00', status: 'FREE', event: 'new event'},
+  {hour: '12:30', status: 'BOOKED', event: 'new event'},
+  {hour: '13:00', status: 'BOOKED', event: 'new event'},
+  {hour: '13:30', status: 'FREE', event: 'new event'},
+  {hour: '14:00', status: 'BOOKED', event: 'new event'},
+  {hour: '14:30', status: 'BOOKED', event: 'new event'},
+  {hour: '15:00', status: 'BOOKED', event: 'new event'},
+  {hour: '15:30', status: 'FREE', event: 'new event'},
+  {hour: '16:00', status: 'FREE', event: 'new event'},
+  {hour: '16:30', status: 'FREE', event: 'new event'},
+  {hour: '17:00', status: 'FREE', event: 'new event'},
+  {hour: '17:30', status: 'BOOKED', event: 'new event'},
+  {hour: '18:00', status: 'FREE', event: 'new event'},
+  {hour: '18:30', status: 'FREE', event: 'new event'},
+  {hour: '19:00', status: 'BOOKED', event: 'BIRTHDAY PARTY'},
+  {hour: '19:30', status: 'FREE', event: 'new event'},
+  {hour: '20:00', status: 'FREE', event: 'new event'},
+  {hour: '20:30', status: 'BOOKED', event: 'new event'},
+  {hour: '21:00', status: 'FREE', event: 'new event'},
+  {hour: '21:30', status: 'FREE', event: 'new event'},
+  {hour: '22:00', status: 'FREE', event: 'new event'},
+  {hour: '22:30', status: 'FREE', event: 'new event'},
+  {hour: '23:00', status: 'FREE', event: 'new event'},
+  {hour: '23:30', status: 'FREE', event: 'new event'},
+
 ];
 
 const renderActions = status => {
   switch (status) {
-    case 'free':
+    case 'FREE':
       return (
         <>
-          <Button>thinking</Button>
-          <Button>new order</Button>
+          <Button>BOOK A TABLE</Button>
         </>
       );
-    case 'thinking':
+    case 'BOOKED':
       return (
-        <Button>new order</Button>
-      );
-    case 'ordered':
-      return (
-        <Button>prepared</Button>
-      );
-    case 'prepared':
-      return (
-        <Button>delivered</Button>
-      );
-    case 'delivered':
-      return (
-        <Button>paid</Button>
-      );
-    case 'paid':
-      return (
-        <Button>free</Button>
+        <>
+          <Button>CANCEL</Button>
+          <Button>CHANGE</Button>
+        </>
       );
     default:
       return null;
@@ -52,40 +57,80 @@ const renderActions = status => {
 };
 
 const Tables = () => (
-  <Paper className={styles.component}>
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell>Table</TableCell>
-          <TableCell>Status</TableCell>
-          <TableCell>Order</TableCell>
-          <TableCell>Action</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {demoContent.map(row => (
-          <TableRow key={row.id}>
-            <TableCell component="th" scope="row">
-              {row.id}
-            </TableCell>
-            <TableCell>
-              {row.status}
-            </TableCell>
-            <TableCell>
-              {row.order && (
-                <Button to={`${process.env.PUBLIC_URL}/waiter/order/${row.order}`}>
-                  {row.order}
-                </Button>
-              )}
-            </TableCell>
-            <TableCell>
-              {renderActions(row.status)}
-            </TableCell>
+  <div className={styles.component}>
+    <Paper className={styles.component}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Hour</TableCell>
+            <TableCell>Table 1</TableCell>
+            <TableCell>Options</TableCell>
+            <TableCell>Table 2</TableCell>
+            <TableCell>Options</TableCell>
+            <TableCell>Table 3</TableCell>
+            <TableCell>Options</TableCell>
+            <TableCell>Table 4</TableCell>
+            <TableCell>Options</TableCell>
+            <TableCell>Table 5</TableCell>
+            <TableCell>Options</TableCell>
+            <TableCell>Table 6</TableCell>
+            <TableCell>Options</TableCell>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </Paper>
+        </TableHead>
+        <TableBody>
+          {demoContent.map(row => (
+            <TableRow key={row.hour}>
+              <TableCell component="th" scope="row">
+                {row.hour}
+              </TableCell>
+              <TableCell>
+                {row.status}
+              </TableCell>
+              <TableCell>
+                {renderActions(row.status)}
+                {renderActions(row.event)}
+              </TableCell>
+              <TableCell>
+                {row.status}
+              </TableCell>
+              <TableCell>
+                {renderActions(row.status)}
+                {renderActions(row.event)}
+              </TableCell>
+              <TableCell>
+                {row.status}
+              </TableCell>
+              <TableCell>
+                {renderActions(row.status)}
+                {renderActions(row.event)}
+              </TableCell>
+              <TableCell>
+                {row.status}
+              </TableCell>
+              <TableCell>
+                {renderActions(row.status)}
+                {renderActions(row.event)}
+              </TableCell>
+              <TableCell>
+                {row.status}
+              </TableCell>
+              <TableCell>
+                {renderActions(row.status)}
+                {renderActions(row.event)}
+              </TableCell>
+              <TableCell>
+                {row.status}
+              </TableCell>
+              <TableCell>
+                {renderActions(row.status)}
+                {renderActions(row.event)}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Paper>
+  </div>
 );
 
 export default Tables;

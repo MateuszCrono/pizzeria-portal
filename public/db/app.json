@@ -5,6 +5,38 @@
       "class": "small",
       "name": "Zio Stefano's Doughnut",
       "price": 9,
+      "tables": [
+        {
+          "id": "1",
+          "status": "free",
+          "order": null
+        },
+        {
+          "id": "2",
+          "status": "thinking",
+          "order": null
+        },
+        {
+          "id": "3",
+          "status": "ordered",
+          "order": 123
+        },
+        {
+          "id": "4",
+          "status": "prepared",
+          "order": 234
+        },
+        {
+          "id": "5",
+          "status": "delivered",
+          "order": 345
+        },
+        {
+          "id": "6",
+          "status": "paid",
+          "order": 456
+        }
+      ],
       "description": "Treat yourself with this soft, freshly baked cookie. The recipe has been handed down from generation to generation in our family and it has won us several first place prizes in local competitions.",
       "images": [
         "<img class=\"active\" src=\"images/doughnut.svg\">"
